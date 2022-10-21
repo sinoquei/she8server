@@ -4,10 +4,24 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
 const homeRouter = require('./routes/home');
 const usersRouter = require('./routes/users');
 const cartRouter = require('./routes/cart');
 const checkoutRouter = require('./routes/checkout');
+const mongoose = require('mongoose');
+
+const url = 'mongodb://localhost:27017/she8server';
+const connect = mongoose.connect(url, {
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+});
+
+connect.then(() => console.log('Connected correctly to she8server'), 
+    err => console.log(err)
+);
 
 var app = express();
 
